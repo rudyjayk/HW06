@@ -4,6 +4,9 @@
 #include <vector>
 #include <sstream>
 #include "Customer.h"
+#include "Adult.h"
+#include "Senior.h"
+#include "Student.h"
 #include "Transaction.h"
 
 /**
@@ -32,6 +35,8 @@ protected:
 
 		// Polymorphism: calls the correct virtual methods from the specific customer type
 		// FIXME: Get the overdraft and check charge information from this accounts customer
+		overdraft = get_customer()->getOverdraft();
+		charge = get_customer()->getCharge();
 
 		std::stringstream ss;
 		ss << "Check Charge: " << charge << " Overdraft Fee: " << overdraft;
@@ -46,8 +51,9 @@ protected:
 	void add_interest(double interest) {
 		double amt = balance*interest;
 		balance = balance + amt;
-		std::string fees = get_fees();
-		Transaction *tran = NULL;
+		std::string fees = get_fees(); 
+		string type = "Add Interest";
+		Transaction *tran = new Transaction(get_customer()->Customer::getCNumber(), type, amt, fees);
 
 		// FIXME: Create a Transaction object and assign it to the transaction vector.
 
@@ -101,7 +107,10 @@ public:
 		std::stringstream ss; // for composing the string that describes this account
 
 		// FIXME: Add information about the customer who owns this account.
-		
+		ss << "  Name: " << get_customer()->Customer::getName() << std::endl;
+		ss << "  Age: " << get_customer()->Customer::getAge() << std::endl;
+		ss << "  Adress: " << get_customer()->Customer::getAddress() << std::endl;
+		ss << "  Number: " << get_customer()->Customer::getTNumber() << std::endl;
 		ss << "  Balance: " << balance << std::endl;
 		ss << "  Account ID: " << account_number << std::endl;
 		return ss.str();
@@ -114,7 +123,8 @@ public:
 	virtual void deposit(double amt) {
 		balance += amt;
 		std::string fees = get_fees();
-		Transaction *tran = NULL;
+		string type = "Deposit";
+		Transaction *tran = new Transaction(get_customer()->Customer::getCNumber(), type, amt, fees);
 
 		// FIXME: Create a Transaction object and assign it to transaction vector.
 
@@ -128,7 +138,8 @@ public:
 	virtual void withdraw(double amt) {
 		balance -= amt;
 		std::string fees = get_fees();
-		Transaction *tran = NULL;
+		string type = "Withdrawal";
+		Transaction *tran = new Transaction(get_customer()->Customer::getCNumber(),type, amt, fees);
 
 		// FIXME: Create a Transaction object and assign it to tran.
 

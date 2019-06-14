@@ -1,4 +1,6 @@
 ﻿  Banking_Application.cpp
-C:\Users\rudyj\Desktop\Banking\PR5_Banking\PR4_Banking\Banking_Application.cpp(173,14): warning C4244:  'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\rudyj\Desktop\Banking\PR5_Banking\PR4_Banking\Banking_Application.cpp(174,13): warning C4244:  'initializing': conversion from '__int64' to 'int', possible loss of data
+C:\Users\rudyj\Desktop\Banking\PR5_Banking\PR4_Banking\Bank.h(39,21): warning C4018:  '<': signed/unsigned mismatch
+  readint.cpp
+  Generating Code...
+C:\Users\rudyj\Desktop\Banking\PR5_Banking\PR4_Banking\Bank.h(57,21): warning C4018:  '<': signed/unsigned mismatch
   PR4_Banking.vcxproj -> C:\Users\rudyj\Desktop\Banking\PR5_Banking\Debug\PR4_Banking.exe

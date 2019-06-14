@@ -15,7 +15,7 @@ private:
 	std::string fees;
 public:
 
-	Transaction(int customer_number, std::string type, double amt, std::string fees)
+	Transaction(string customer_number, std::string type, double amt, std::string fees)
 	{
 		this->customer_number = customer_number;
 		this->transaction_type = type;

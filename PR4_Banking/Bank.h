@@ -4,6 +4,10 @@
 #include <stdexcept>
 #include "Account.h"
 #include "Customer.h"
+#include "Savings.h"
+#include "Checkings.h"
+
+using std::ostringstream;
 
 /**
 The CS273 Bank has Accounts and Customers
@@ -32,6 +36,12 @@ private:
 		std::vector<int> user_accounts;
 
 		// FIXME: Find all the accounts belonging to a customer name and add it to the vector of account numbers.
+		for (int i = 0; i < accounts.size(); i++) {
+			
+			if (accounts[i]->get_customer()->getName() == name) {
+				user_accounts.push_back(accounts[i]->get_account());
+			}
+		}
 		
 		return user_accounts;
 	}
@@ -44,7 +54,13 @@ private:
 	Customer *find_customer(std::string name)
 	{
 		// FIXME: Find and return the Customer object with the parameter name
+		for (int i = 0; i < customers.size(); i++) {
+			if (customers[i]->getName() == name) {
+				return customers[i];
+			}
+		}
 		return NULL;
+		
 	}
 
 	/** 
@@ -55,9 +71,20 @@ private:
 	*/
 	Account * add_account (Customer *cust, std::string account_type)
 	{
-		Account *acct = NULL;
+		Account* acct = NULL;
 
+		if (account_type == "Savings") {
+
+			acct = new Savings(cust, this->account_id);
+		}
+		else {
+
+			acct = new Checkings(cust, this->account_id);
+		}
+
+		accounts.push_back(acct);
 		// FIXME: Factory method for creating a Account object (could be a Saving_Account or a Checking_Account).
+
 		
 		return acct;
 	}
@@ -95,8 +122,26 @@ public:
 		std::string cust_type, std::string account_type)
 	{
 		Customer *cust;
-		
+		int Number = this->customer_id;       // number to be converted to a string
+
+		string Result;          // string which will contain the result
+
+		ostringstream convert;   // stream used for the conversion
+
+		convert << Number;      // insert the textual representation of 'Number' in the characters in the stream
+
+		Result = convert.str();
+
 		// FIXME: Depending on the customer type, we want to create an Adult, Senior, or Student object.
+		if (cust_type == "Adult") {
+			cust = new Adult(name, address, age, telephone, Result);
+		}
+		else if (cust_type == "Student") {
+			cust = new Student(name, address, age, telephone, Result);
+		}
+		else {
+			cust = new Senior(name, address, age, telephone, Result);
+		}
 
 		customers.push_back(cust);
 		return add_account(cust, account_type);
@@ -111,7 +156,7 @@ public:
 	{
 		Account *acct = get_account(acct_number);
 		if (acct) {
-			// FIXME: Deposit the amt in the account
+			acct->deposit(amt);
 		}
 	}
 
@@ -125,6 +170,7 @@ public:
 		Account *acct = get_account(acct_number);
 		if (acct) {
 			// FIXME: Withdraw the amt from the account
+			acct->withdraw(amt);
 		}
 	}
 
