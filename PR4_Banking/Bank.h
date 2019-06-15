@@ -75,11 +75,11 @@ private:
 
 		if (account_type == "Savings") {
 
-			acct = new Savings(cust, this->account_id);
+			acct = new Savings(cust, account_id++);
 		}
 		else {
 
-			acct = new Checkings(cust, this->account_id);
+			acct = new Checkings(cust, account_id++);
 		}
 
 		accounts.push_back(acct);
@@ -170,8 +170,12 @@ public:
 		Account *acct = get_account(acct_number);
 		if (acct) {
 			// FIXME: Withdraw the amt from the account
-			acct->withdraw(amt);
-		}
+			if(acct->get_balance() >= amt)
+				acct->withdraw(amt);
+			else {
+				std::cout << "No sufficient funds in bank!\n\n";
+			}
+		}	
 	}
 
 	/**

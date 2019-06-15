@@ -111,6 +111,12 @@ void Make_Deposit(Bank &bank)
 	int acct_id;
 	cout << "Please enter your account ID: ";
 	cin >> acct_id;
+
+	if (bank.get_account(acct_id) == NULL) {
+		cout << "The account does not exist!\n";
+		return;
+	}
+
 	double amt;
 	cout << "Amount to deposit: ";
 	cin >> amt;
@@ -124,9 +130,16 @@ void Make_Deposit(Bank &bank)
 */
 void Make_Withdrawal(Bank &bank)
 {
+	
 	int acct_id;
 	cout << "Please enter your account ID: ";
 	cin >> acct_id;
+
+	if (bank.get_account(acct_id) == NULL) {
+		cout << "The account does not exist!\n";
+		return;
+	}
+
 	double amt;
 	cout << "Amount to withdraw: ";
 	cin >> amt;
@@ -147,6 +160,7 @@ int main()
 		string	menu_string = "Please choose an action below:\n";
 				menu_string += "0 - Add Account\n";
 				menu_string += "1 - List Accounts\n";
+				menu_string += "2 - Make Deposit\n";
 				menu_string += "3 - Make withdrawal\n";
 				menu_string += "4 - Quit\n";
 				menu_string += "Enter: ";

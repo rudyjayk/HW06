@@ -1,6 +1,4 @@
 ﻿  Banking_Application.cpp
 C:\Users\rudyj\Desktop\Banking\PR5_Banking\PR4_Banking\Bank.h(39,21): warning C4018:  '<': signed/unsigned mismatch
-  readint.cpp
-  Generating Code...
 C:\Users\rudyj\Desktop\Banking\PR5_Banking\PR4_Banking\Bank.h(57,21): warning C4018:  '<': signed/unsigned mismatch
   PR4_Banking.vcxproj -> C:\Users\rudyj\Desktop\Banking\PR5_Banking\Debug\PR4_Banking.exe
