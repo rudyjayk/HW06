@@ -6,8 +6,10 @@
 #include "Customer.h"
 #include "Savings.h"
 #include "Checkings.h"
+#include <iostream>
 
 using std::ostringstream;
+
 
 /**
 The CS273 Bank has Accounts and Customers
@@ -170,6 +172,8 @@ public:
 		Account *acct = get_account(acct_number);
 		if (acct) {
 			// FIXME: Withdraw the amt from the account
+
+			//This conditional is used to see if there is enough money to be withdrawn from the account
 			if(acct->get_balance() >= amt)
 				acct->withdraw(amt);
 			else {

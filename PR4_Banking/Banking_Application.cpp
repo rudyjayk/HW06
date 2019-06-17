@@ -1,7 +1,7 @@
 /** 
 *  Program Name: PR4_Banking Application
-*  Last modified: Fall 2014
-*  Authors: Whitworth CS Department
+*  Last modified: June 17, 2019
+*  Authors: Rudyjay Keopuhiwa
 */
 
 #include <iostream>
@@ -145,6 +145,7 @@ void Make_Withdrawal(Bank &bank)
 	cin >> amt;
 	bank.make_withdrawal(acct_id, amt);
 }
+
 
 int main()
 {
